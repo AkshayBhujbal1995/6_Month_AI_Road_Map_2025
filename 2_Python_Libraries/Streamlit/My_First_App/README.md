@@ -1,4 +1,4 @@
-## Day 23 – My First Streamlit App (with a Secret Message)
+## My First Streamlit App (with a Secret Message)
 
 This is a simple Streamlit app created using Notepad and CMD — no IDE!
 
