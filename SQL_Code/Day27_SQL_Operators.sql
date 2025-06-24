@@ -1,3 +1,6 @@
+tee c/Sql_output_files/sql_output_Opeators_log.txt;
+Logging to file 'c/Sql_output_files/sql_output_Opeators_log.txt'
+
 mysql> CREATE DATABASE OperatorDemo;
 Query OK, 1 row affected (0.25 sec)
 
