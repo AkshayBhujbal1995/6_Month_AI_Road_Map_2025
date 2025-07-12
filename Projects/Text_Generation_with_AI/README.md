@@ -1,5 +1,5 @@
 
-# 📘 Day43_Text_Generation_Using_Google_Generative_AI
+# Project_Text_Generation_Using_Google_Generative_AI
 
 This project demonstrates how to build a simple text generation system using **Google’s Gemini 2.5 Flash model** via the `google-generativeai` Python SDK.  
 You’ll connect to Gemini using Python, send a prompt, and receive an AI-generated response.
