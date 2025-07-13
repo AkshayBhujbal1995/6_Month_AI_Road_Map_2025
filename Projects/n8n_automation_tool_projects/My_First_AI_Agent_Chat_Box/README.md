@@ -40,17 +40,17 @@ Users can:
 ## 📸 Screenshots
 
 ### 1. AI Agent Setup in n8n
-![AI Agent Setup](./ai-agent-setup.png)
+![AI Agent Setup](./ai-agent-setup.PNG)
 
 ---
 
 ### 2. AI Agent Responding in Workflow
-![AI Agent Working](./ai-agent-working.png)
+![AI Agent Working](./ai-agent-working.PNG)
 
 ---
 
 ### 3. Agent Working in Browser (Chat UI)
-![Browser Working](./ai-agent-browser.png)
+![Browser Working](./ai-agent-browser.PNG)
 
 ---
 
