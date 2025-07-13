@@ -1,4 +1,4 @@
-# 🧞 Akshay's First AI Agent – Chat UI with Real-Time Tools (n8n + Gemini)
+# First AI Agent – Chat UI with Real-Time Tools (n8n + Gemini)
 
 Welcome to my first AI Agent project! This assistant is built using **n8n**, connected to the **Gemini AI model**, enhanced with real-time tools like **Calculator** and **Shark API**, and deployed via a simple **HTML-based Chat Interface**.
 
@@ -59,7 +59,6 @@ Users can:
 ```
 
 MyFirstAIAgentChatBox/
-├── index.html
 ├── README.md
 ├── ai-agent-setup.png
 ├── ai-agent-working.png
