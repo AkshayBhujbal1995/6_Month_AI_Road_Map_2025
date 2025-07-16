@@ -17,9 +17,7 @@ A simple Machine Learning project to model **non-linear relationships** between 
 
 ### 📸 Screenshot
 
-```markdown
-![App Screenshot](Poly Salary Predict App.PNG)
-```
+![App Screenshot](Poly_Salary_Predict_App.PNG)
 
 ---
 
