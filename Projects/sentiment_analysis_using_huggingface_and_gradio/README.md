@@ -1,26 +1,59 @@
+
 # 💬 Sentiment Analysis using Hugging Face and Gradio
 
-This project demonstrates how to build a **real-time sentiment analysis web app** using the Hugging Face `transformers` pipeline and **Gradio** for the frontend interface.
+This project builds a real-time sentiment analysis app using Hugging Face's Transformers library. It predicts whether a sentence expresses **positive** or **negative** sentiment and displays the result using a clean Gradio interface.
 
 ---
 
-## 🚀 Features
-- Uses a pretrained sentiment classifier (`distilbert-base-uncased-finetuned-sst-2-english`)
-- Real-time prediction on user input
-- Deployed with a simple Gradio UI
-- Clean and responsive design
+## 🎯 Objective
+
+- Use a pretrained transformer (`distilbert-base-uncased-finetuned-sst-2-english`)
+- Create a fast and interactive web app to classify sentiment from text
+
+---
+
+## ⚙️ Environment Setup
+
+✅ Recommended: **Google Colab with GPU enabled**
+
+```bash
+pip install transformers gradio
+````
+
+---
+
+## ▶️ How to Run
+
+```bash
+python app.py
+```
+
+In Google Colab:
+
+1. Open your notebook.
+2. Go to `Runtime > Change runtime type > GPU`.
+3. Paste the code and run all cells.
+
+---
+
+## 📋 Example Inputs
+
+* `"I love Hugging Face and its models!"`
+* `"This app is boring and I hate it."`
 
 ---
 
 ## 🧠 Technologies Used
-- Python
-- Hugging Face Transformers
-- Gradio
+
+* Python
+* Hugging Face Transformers
+* Gradio
 
 ---
 
-## 🛠️ Installation
+## 📸 Output Preview
 
-```bash
-pip install transformers gradio
+![Sentiment Analyzer Output](output.PNG)
+
+---
 
