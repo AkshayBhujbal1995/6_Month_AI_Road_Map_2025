@@ -58,13 +58,13 @@ We built a **Machine Learning regression model**, deployed it using **Flask**, a
 
 ### 🔷 Prediction Example – 5 Hours Input
 
-![Predicted Output](screenshots/prediction_5hr.png)
+![Predicted Output](prediction_5hr.PNG)
 
 ---
 
 ### 🔷 Error Message for Invalid Input (e.g., 25 hours)
 
-![Error Message](screenshots/error_message.png)
+![Error Message](error_message.png)
 
 ---
 
