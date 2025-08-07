@@ -52,7 +52,7 @@ We built a **Machine Learning regression model**, deployed it using **Flask**, a
 
 ### 🔷 App Frontend (Before Prediction)
 
-![App Frontend](screenshots/frontend_1.png)
+![App Frontend](frontend_1.PNG)
 
 ---
 
@@ -64,7 +64,7 @@ We built a **Machine Learning regression model**, deployed it using **Flask**, a
 
 ### 🔷 Error Message for Invalid Input (e.g., 25 hours)
 
-![Error Message](error_message.png)
+![Error Message](error_message.PNG)
 
 ---
 
@@ -141,13 +141,3 @@ Passionate about ML, Data Science, and real-world applications.
 Let’s connect on LinkedIn or GitHub!
 
 ---
-
-```
-
-> 🔔 Make sure you **create a `screenshots` folder** and place your 3 image files there:
-- `frontend_1.png`
-- `prediction_5hr.png`
-- `error_message.png`
-
-Let me know if you'd like me to package this into a **ready-to-download ZIP** or help push it to GitHub.
-```
