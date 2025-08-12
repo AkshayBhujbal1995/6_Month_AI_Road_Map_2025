@@ -1,0 +1,37 @@
+Natural Language Processing (NLP)
+Two main parts:
+
+NLU – Natural Language Understanding
+
+NLG – Natural Language Generation
+
+Core tasks:
+
+Tokenization
+
+Stopword removal
+
+Stemming & Lemmatization
+
+Part-of-Speech (POS) tagging
+
+Named Entity Recognition (NER)
+
+Text classification
+
+Sentiment analysis
+
+Summarization
+
+Libraries & Tools
+
+NLTK
+
+spaCy
+
+Gensim
+
+Stanford NLP (Stanza)
+
+Hugging Face Transformers
+
