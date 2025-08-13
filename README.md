@@ -42,7 +42,8 @@ Here’s a snapshot of the repository's structure:
     * `6_SQL/`
     * `7_Statistics/`
     * `8_Machine_Learning/`
-    * `9_All_Data_Sets/`
+    * `9_Artificial_Intelligence_(AI)/`
+    * `All_Data_Sets/`
     * `Assignments/`
     * `Python_Code/`
     * `SQL_Code/`
