@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Text Summarization (spaCy + Streamlit) Project</title>
+  <style>
+    :root{
+      --bg1:#0f172a; /* slate-900 */
+      --bg2:#1e293b; /* slate-800 */
+      --card:#0b1220cc;
+      --glass:rgba(255,255,255,.08);
+      --text:#e6edf3;
+      --muted:#93a4b8;
+      --accent:#7c3aed; /* violet-600 */
+      --accent2:#22d3ee; /* cyan-400 */
+      --badge:#111827; /* gray-900 */
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--text);
+      background: radial-gradient(1200px 800px at 10% 10%, #1d1b3a 0%, var(--bg1) 35%),
+                  radial-gradient(800px 600px at 90% 20%, #0f3a42 0%, var(--bg1) 40%),
+                  linear-gradient(180deg,var(--bg1), var(--bg2));
+    }
+    .wrap{max-width: 980px; margin: 0 auto; padding: 32px 16px 64px;}
+    header{
+      display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    }
+    .brand{display:flex; align-items:center; gap:12px}
+    .logo{
+      width:44px; height:44px; display:grid; place-items:center; border-radius:12px;
+      background: radial-gradient(75% 75% at 25% 20%, var(--accent2), var(--accent));
+      box-shadow: 0 10px 30px #7c3aed55, inset 0 0 40px #22d3ee33;
+      font-size:22px;
+    }
+    h1{margin:0; font-size: clamp(22px, 3.5vw, 34px); letter-spacing:.2px}
+    .subtitle{color:var(--muted); margin-top:4px}
+
+    .card{
+      margin-top:24px; padding:24px; border-radius:16px; background:var(--card);
+      border:1px solid #ffffff14; box-shadow: 0 10px 30px #00000055;
+      backdrop-filter: saturate(140%) blur(6px);
+    }
+    .grid{display:grid; grid-template-columns: 1fr; gap:16px}
+    @media(min-width: 820px){
+      .grid{grid-template-columns: 1.2fr .8fr}
+    }
+
+    h2{margin:0 0 10px; font-size: clamp(18px, 2.6vw, 22px)}
+    p{line-height:1.6; color:#d6dee6}
+    ul{margin:8px 0 0 18px; padding:0}
+    li{margin:6px 0; color:#d6dee6}
+
+    .badges{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
+    .badge{padding:8px 12px; border-radius:999px; background:linear-gradient(180deg, #0b1220, #0b1220cc);
+           border:1px solid #ffffff1a; color:#e5e7eb; font-size:14px}
+    .muted{color:var(--muted)}
+
+    .cta{
+      display:flex; gap:12px; flex-wrap:wrap; margin-top:18px
+    }
+    .btn{
+      appearance:none; border:none; cursor:pointer; padding:10px 14px; border-radius:12px;
+      color:white; font-weight:600; letter-spacing:.2px; background:linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 10px 24px #7c3aed55; text-decoration:none; display:inline-flex; align-items:center; gap:8px
+    }
+    .btn.secondary{background:transparent; border:1px solid #ffffff2a; box-shadow:none}
+
+    footer{margin-top:28px; color:var(--muted); font-size:14px; text-align:center}
+    .hr{height:1px; background:#ffffff18; margin:22px 0}
+
+    .shots{display:grid; grid-template-columns: 1fr; gap:12px}
+    .shot{border-radius:12px; overflow:hidden; border:1px solid #ffffff14}
+    .shot img{width:100%; display:block}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">📝</div>
+        <div>
+          <h1>Text Summarization (spaCy + Streamlit) Project</h1>
+          <div class="subtitle">Paste or upload text/PDF/DOCX → get a concise extractive summary.</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="card">
+      <div class="grid">
+        <section>
+          <h2>What this app does</h2>
+          <p>
+            This project builds an <strong>extractive text summarizer</strong>. Users can paste text or upload
+            <strong>.txt</strong>, <strong>.pdf</strong>, or <strong>.docx</strong> files, and the app selects the most
+            informative sentences to produce a concise summary. Controls let you adjust the summary length and sentence limits.
+          </p>
+          <div class="hr"></div>
+          <h2>How it works (high level)</h2>
+          <ul>
+            <li>Processes text with <em>spaCy</em> to tokenize and segment sentences.</li>
+            <li>Builds a content vocabulary (ignoring stopwords & punctuation) and computes normalized term frequencies.</li>
+            <li>Scores each sentence by aggregated token importance; selects top sentences and restores original order.</li>
+          </ul>
+          <div class="cta">
+            <a class="btn" href="#" target="_blank">Open App</a>
+            <a class="btn secondary" href="#" target="_blank">View Source</a>
+          </div>
+        </section>
+        <aside>
+          <h2>What we used</h2>
+          <div class="badges">
+            <span class="badge">Python 3</span>
+            <span class="badge">spaCy (en_core_web_sm)</span>
+            <span class="badge">Streamlit</span>
+            <span class="badge">pdfplumber (PDF)</span>
+            <span class="badge">python-docx (DOCX)</span>
+            <span class="badge">Heapq / nlargest</span>
+          </div>
+          <p class="muted" style="margin-top:10px">Optional: add NLTK, TextRank, or MMR for enhancements.</p>
+        </aside>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Screenshots</h2>
+      <div class="shots">
+        <div class="shot"><img src="Out_1.PNG" alt="Overall App Look"></div>
+        <div class="shot"><img src="Out_2.PNG" alt="Uploaded File & Result"></div>
+        <div class="shot"><img src="Out_3.PNG" alt="Summary at 50%"></div>
+        <div class="shot"><img src="Out_4.PNG" alt="Minimum Sentences = 2"></div>
+      </div>
+    </div>
+
+    <footer>
+      © 2025 • Text Summarizer • Built with spaCy & Streamlit
+    </footer>
+  </div>
+</body>
+</html>
