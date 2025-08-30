@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI-powered Fresh vs Rotten Fruit Recognition</title>
+  <style>
+    /* ---------- Background animation ---------- */
+    :root{
+      --accent:#ff6b4a;
+      --accent-2:#ffb88c;
+      --glass: rgba(255,255,255,0.85);
+      --muted:#555;
+      --card-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      color:#222;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* animated gradient */
+    body{
+      background: linear-gradient(120deg, #fff0e6 0%, #ffe8d1 25%, #ffe9ec 50%, #fff9f5 100%);
+      overflow-y:auto;
+    }
+    /* moving soft shapes on top */
+    .bg {
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      overflow:hidden;
+      pointer-events:none;
+    }
+    .blob{
+      position:absolute;
+      filter: blur(60px) saturate(120%);
+      opacity:0.65;
+      transform-origin:center;
+      animation:float 12s ease-in-out infinite;
+      mix-blend-mode:lighten;
+    }
+    .blob.b1{ width:640px;height:640px;background:linear-gradient(45deg,var(--accent),#ffd1b8); left:-10%; top:-20%; animation-duration:18s;}
+    .blob.b2{ width:500px;height:500px;background:linear-gradient(45deg,var(--accent-2),#ffd9d9); right:-10%; bottom:-10%; animation-duration:14s; animation-delay:2s;}
+    .blob.b3{ width:380px;height:380px;background:linear-gradient(45deg,#ffd7c4,#fff2f1); left:20%; bottom:-15%; animation-duration:20s; animation-delay:5s;}
+    @keyframes float {
+      0% { transform: translateY(0) scale(1);}
+      50% { transform: translateY(-40px) scale(1.06) rotate(6deg);}
+      100% { transform: translateY(0) scale(1);}
+    }
+
+    /* ---------- Page content ---------- */
+    .container{
+      max-width:1000px;
+      margin:40px auto;
+      padding:28px;
+    }
+
+    .hero{
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.82));
+      border-radius:22px;
+      box-shadow: var(--card-shadow);
+      padding:32px;
+      display:flex;
+      gap:26px;
+      align-items:flex-start;
+      border-left:6px solid rgba(255,107,74,0.12);
+    }
+
+    .title {
+      font-size:40px;
+      margin:0;
+      color:var(--accent);
+      text-shadow: 0 6px 20px rgba(255,107,74,0.12);
+      letter-spacing:0.6px;
+      font-weight:700;
+    }
+    .subtitle{
+      color:var(--muted);
+      margin:8px 0 18px 0;
+      font-size:15px;
+    }
+    .badge{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      background:linear-gradient(90deg,#fff, rgba(255,255,255,0.85));
+      padding:10px 14px;
+      border-radius:12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      font-weight:600;
+      color:#333;
+      margin-top:8px;
+    }
+
+    .left{
+      flex:1.1;
+    }
+    .right{
+      flex:0.9;
+      padding-left:12px;
+    }
+
+    /* CTA button */
+    .btn{
+      display:inline-block;
+      padding:12px 18px;
+      border-radius:12px;
+      background: linear-gradient(90deg,var(--accent),#ff957b);
+      color:white;
+      text-decoration:none;
+      font-weight:700;
+      box-shadow: 0 8px 30px rgba(255,107,74,0.18);
+      margin-top:14px;
+    }
+
+    /* sections */
+    .section {
+      margin-top:24px;
+      background:var(--glass);
+      border-radius:14px;
+      padding:18px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.04);
+    }
+    h3{
+      margin:0 0 8px 0;
+      color:#222;
+      font-size:20px;
+    }
+    p{ color:#333; line-height:1.55; margin:8px 0 12px 0; }
+
+    .grid {
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+      margin-top:12px;
+    }
+
+    .card {
+      padding:14px;
+      border-radius:12px;
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+      border-left:4px solid rgba(255,107,74,0.08);
+    }
+
+    ul { margin:8px 0 12px 18px; color:#333; }
+    li { margin:6px 0; }
+
+    pre.snippet{
+      background: #0f1724;
+      color:#e6eef8;
+      padding:12px;
+      border-radius:8px;
+      font-size:13px;
+      overflow:auto;
+    }
+
+    .screenshot-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .screenshot{
+      width:48%;
+      border-radius:10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      border: 6px solid rgba(255,255,255,0.6);
+    }
+
+    footer{
+      margin-top:22px;
+      text-align:center;
+      color:#666;
+      font-size:14px;
+    }
+
+    /* Responsive */
+    @media (max-width:900px){
+      .hero{flex-direction:column;}
+      .grid{grid-template-columns:1fr;}
+      .screenshot{width:100%;}
+    }
+
+    /* small glowing ribbon */
+    .ribbon {
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      background:linear-gradient(90deg, #ffd4c2, #fff6f3);
+      color:#ff3b00;
+      font-weight:700;
+      box-shadow: 0 8px 30px rgba(255,107,74,0.08);
+      margin-top:12px;
+      letter-spacing:0.6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+
+  <div class="container">
+    <div class="hero" role="banner">
+      <div class="left">
+        <h1 class="title">AI-powered Fresh vs Rotten Fruit Recognition</h1>
+        <p class="subtitle">Computer Vision demo using a Convolutional Neural Network to classify Apples, Bananas and Oranges as <strong>Fresh</strong> or <strong>Rotten</strong>.</p>
+
+        <div class="badge">🏷️ Portfolio Project • TensorFlow • Keras • Gradio</div>
+
+        <div style="margin-top:16px;">
+          <a class="btn" href="#demo">View Demo Screenshots</a>
+          <a class="btn" style="margin-left:8px; background:linear-gradient(90deg,#3b82f6,#60a5fa);" href="#pipeline">Pipeline</a>
+        </div>
+      </div>
+
+      <div class="right">
+        <div style="padding:14px; border-radius:12px; background:linear-gradient(180deg,#fff,#fffaf6); box-shadow: 0 10px 30px rgba(0,0,0,0.06);">
+          <h3 style="margin-bottom:6px;">Quick Summary</h3>
+          <p><strong>Goal:</strong> Detect whether fruit images are <em>Fresh</em> or <em>Rotten</em>.</p>
+          <p><strong>Scope:</strong> 3 fruit types — Apple, Banana, Orange (fresh/rotten).</p>
+          <div style="margin-top:10px;">
+            <span class="ribbon">Proof-of-Concept</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- pipeline -->
+    <div class="section" id="pipeline">
+      <h3>Pipeline — Step by Step</h3>
+      <div class="grid">
+        <div class="card">
+          <strong>1. Data</strong>
+          <p>Use the Kaggle dataset: <em>Fruits - Fresh and Rotten</em>. Train/test folders with subfolders for each class (freshapples, rottenapples, etc.).</p>
+          <ul>
+            <li>Organize images into <code>train/</code> and <code>test/</code></li>
+            <li>Ensure balanced classes or apply augmentation</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <strong>2. Preprocessing</strong>
+          <p>Resize images (e.g. 150×150), rescale pixel values to <code>0–1</code>, and apply augmentation (rotation, flip, zoom) during training for robustness.</p>
+        </div>
+
+        <div class="card">
+          <strong>3. Model</strong>
+          <p>Convolutional Neural Network (Conv2D → MaxPool → Flatten → Dense). Final activation: <code>softmax</code> for 6 classes (3 fruits × fresh/rotten).</p>
+        </div>
+
+        <div class="card">
+          <strong>4. Train & Evaluate</strong>
+          <p>Train for multiple epochs, plot training/validation accuracy and loss. Save the best model to disk.</p>
+        </div>
+
+        <div class="card">
+          <strong>5. Deployment</strong>
+          <p>Load the saved model and serve via Gradio — interactive UI for image upload + webcam capture and instant predictions.</p>
+        </div>
+
+        <div class="card">
+          <strong>Minimal example (predict)</strong>
+          <pre class="snippet">def predict_image(img):
+    img = tf.image.resize(img,(150,150))/255.0
+    pred = model.predict(img[np.newaxis,...])[0]
+    label = np.argmax(pred)
+    return {labels[label]: float(pred[label])}
+          </pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- business problem -->
+    <div class="section" id="business">
+      <h3>Business Problem Solved</h3>
+      <p>This proof-of-concept helps solve real-world operational problems for grocery stores, supply chains and small farms:</p>
+      <ul>
+        <li><strong>Reduce waste:</strong> automatically detect rotten produce to avoid stocking/selling spoiled items.</li>
+        <li><strong>Quality control:</strong> speed up manual inspection processes at packing or store level.</li>
+        <li><strong>User experience:</strong> consumer app to verify freshness at home or markets.</li>
+      </ul>
+      <p style="font-weight:600; color:#444;">How it adds value: faster inspections, fewer returns, improved customer trust and cost savings through less spoilage.</p>
+    </div>
+
+    <!-- limitations & future -->
+    <div class="section" id="limits">
+      <h3>Limitations & Future Work</h3>
+      <div class="grid">
+        <div class="card">
+          <strong>Limitations</strong>
+          <ul>
+            <li>Model currently handles only <strong>3 fruits</strong> (Apple, Banana, Orange).</li>
+            <li>Accuracy depends on dataset size and image variety (lighting, angles, background).</li>
+            <li>Edge-case rottenness or partially rotten fruits can be ambiguous.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <strong>Future Enhancements</strong>
+          <ul>
+            <li>Use transfer learning (EfficientNet / ResNet) for better accuracy.</li>
+            <li>Collect more labeled images from varied sources and augment heavily.</li>
+            <li>Real-time camera integration and cloud deployment (HuggingFace Spaces / Streamlit Cloud).</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:10px;"><strong>Key note:</strong> The system works well as a proof-of-concept — but to make it production-ready, it needs significantly more data and robust testing.</p>
+    </div>
+
+    <!-- screenshots/demo -->
+    <div class="section" id="demo">
+      <h3>Demo Screenshots</h3>
+      <p>Below are results from the Gradio demo. </p>
+
+      <div class="screenshot-row">
+        <img class="screenshot" src="Output1.PNG" alt="Gradio App UI">
+        <img class="screenshot" src="Output2_rotten_apple.PNG" alt="Rotten Apple">
+      </div>
+      <div class="screenshot-row" style="margin-top:12px;">
+        <img class="screenshot" src="Output3_rotten_orange.PNG" alt="Rotten Orange">
+        <img class="screenshot" src="Output4_fresh_apple.PNG" alt="Fresh Apple">
+      </div>
+    </div>
+
+    <!-- how to run -->
+    <div class="section" id="run">
+      <h3>How to Run (Quick)</h3>
+      <ol>
+        <li>Place this HTML file and the screenshots in a folder with your `fruit_cnn_model.h5` and `app.py` (optional).</li>
+        <li>To run the interactive demo, run the Gradio app: <code>python app.py</code> and open <code>http://127.0.0.1:7860</code>.</li>
+        <li>Notebook: open the Jupyter Notebook (e.g., <code>Day75_Fruit_Classification_CNN.ipynb</code>) to see training and code walkthrough.</li>
+      </ol>
+     
+    </div>
+
+    
+
+    <footer>
+      Built by <strong>Akshay Bhujbal </strong> • https://github.com/AkshayBhujbal1995 • © <span id="year"></span>
+    </footer>
+  </div>
+
+  <script>
+    // small script to show current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
