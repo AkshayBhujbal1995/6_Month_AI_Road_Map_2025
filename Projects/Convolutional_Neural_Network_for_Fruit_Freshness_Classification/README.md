@@ -40,8 +40,6 @@ This project demonstrates how **Computer Vision + Deep Learning** can solve real
 - **Validation Accuracy:** ~93%  
 - **Epochs:** 10  
 
-![Accuracy Curve](https://via.placeholder.com/500x250.png?text=Training+Accuracy+vs+Epochs)  
-![Loss Curve](https://via.placeholder.com/500x250.png?text=Training+Loss+vs+Epochs)  
 
 ---
 
