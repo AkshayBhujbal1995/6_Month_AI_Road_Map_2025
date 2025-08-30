@@ -3,6 +3,7 @@
 
 A **Convolutional Neural Network (CNN)** project that classifies fruits as **Fresh** or **Rotten**.  
 Currently supports **Apple, Banana, and Orange**.  
+![Fresh vs Rotten Fruit Classifier](Project_TN.png)
 
 This project demonstrates how **Computer Vision + Deep Learning** can solve real-world problems such as:  
 - ✅ Food quality control  
