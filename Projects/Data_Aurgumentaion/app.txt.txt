@@ -1,0 +1,94 @@
+import streamlit as st
+import os
+import random
+from tensorflow.keras.preprocessing.image import ImageDataGenerator, img_to_array
+from PIL import Image
+import numpy as np
+import base64
+
+# ========= CUSTOM STYLING =========
+def set_background(image_file):
+    with open(image_file, "rb") as f:
+        data = f.read()
+    b64 = base64.b64encode(data).decode()
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("data:image/avif;base64,{b64}");
+            background-size: cover;
+            background-position: center;
+        }}
+        .stButton button {{
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 2px solid #fff;
+            border-radius: 12px;
+            padding: 0.6em 1.2em;
+            font-size: 16px;
+            box-shadow: 0px 4px 20px rgba(255, 255, 255, 0.4);
+            transition: all 0.3s ease;
+        }}
+        .stButton button:hover {{
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0px 6px 25px rgba(255, 255, 255, 0.7);
+        }}
+        .stSelectbox, .stFileUploader, .stTextInput {{
+            background: rgba(255,255,255,0.2) !important;
+            border-radius: 10px !important;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
+            color: white !important;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+# Set background
+set_background("bg.avif")
+
+# ========= APP =========
+st.title("✨ Data Augmentation Demo")
+st.write("Upload images and choose a fill_mode to generate augmented samples.")
+
+uploaded_files = st.file_uploader("Upload images", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
+mode = st.selectbox("Choose fill_mode", ["nearest", "reflect", "wrap", "constant", "mix"])
+
+def augment_image(img, fill_mode, num_samples=4):
+    x = img_to_array(img)
+    x = x.reshape((1,) + x.shape)
+
+    datagen = ImageDataGenerator(
+        rotation_range=40,
+        width_shift_range=0.2,
+        height_shift_range=0.2,
+        shear_range=0.2,
+        zoom_range=0.2,
+        horizontal_flip=True,
+        fill_mode=fill_mode
+    )
+
+    samples = []
+    i = 0
+    for batch in datagen.flow(x, batch_size=1):
+        samples.append(batch[0].astype("uint8"))
+        i += 1
+        if i >= num_samples:
+            break
+    return samples
+
+if uploaded_files:
+    for uploaded_file in uploaded_files:
+        img = Image.open(uploaded_file)
+        st.subheader(f"Original: {uploaded_file.name}")
+        st.image(img, width=200)
+
+        if mode != "mix":
+            st.write(f"Augmented with fill_mode = {mode}")
+            results = augment_image(img, mode, num_samples=4)
+            st.image(results, width=150)
+        else:
+            for m in ["nearest", "reflect", "wrap", "constant"]:
+                st.write(f"Augmented with fill_mode = {m}")
+                results = augment_image(img, m, num_samples=2)
+                st.image(results, width=150)
