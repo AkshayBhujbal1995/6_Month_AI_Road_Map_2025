@@ -81,5 +81,3 @@ Examples include:
 
 👤 **Akshay Bhujbal**
 🎯 Learning Deep Learning & MLOps | Building daily projects
-
-```
