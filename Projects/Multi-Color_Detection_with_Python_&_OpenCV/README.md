@@ -49,6 +49,8 @@ Here is a screenshot of the project in action:
 ````
 
 4. Run the script:
+
+  
    ```bash
    python Color_Detection.py
  ````
