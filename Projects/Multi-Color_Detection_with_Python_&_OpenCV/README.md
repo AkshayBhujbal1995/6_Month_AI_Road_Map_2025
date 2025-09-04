@@ -49,13 +49,11 @@ Here is a screenshot of the project in action:
 ````
 
 4. Run the script:
-```bash
-
+   ```bash
    python Color_Detection.py
- 
-````
-5. Press **Esc** to exit the live feed.
+ ````
 
+5. Press **Esc** to exit the live feed.
 
 
 ## 📚 Learnings
@@ -64,14 +62,10 @@ Here is a screenshot of the project in action:
 * Contour detection helps locate regions of interest.
 * Real-time detection is possible with simple preprocessing + OpenCV.
 
----
 
 ## 👨‍💻 Author
 
 Developed by **Akshay Bhujbal**
 Powered by **Python & OpenCV**
 
-
-
-```
 
