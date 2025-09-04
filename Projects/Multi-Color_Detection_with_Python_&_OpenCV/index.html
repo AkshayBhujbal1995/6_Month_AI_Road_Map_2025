@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Detection with OpenCV</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    header {
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: #00e5ff;
+      text-shadow: 0px 4px 12px rgba(0, 229, 255, 0.6);
+    }
+
+    h2 {
+      margin-top: 40px;
+      color: #ffcc00;
+      text-shadow: 0px 3px 8px rgba(255, 204, 0, 0.6);
+    }
+
+    p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto 20px auto;
+      line-height: 1.6;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 20px auto;
+      max-width: 700px;
+      text-align: left;
+    }
+
+    ul li {
+      background: rgba(255, 255, 255, 0.1);
+      margin: 10px 0;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      transition: 0.3s;
+    }
+
+    ul li:hover {
+      background: rgba(0, 229, 255, 0.3);
+      transform: scale(1.02);
+    }
+
+    .screenshot {
+      margin: 40px 0;
+    }
+
+    .screenshot img {
+      width: 80%;
+      max-width: 750px;
+      border-radius: 12px;
+      box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.6);
+      border: 3px solid #fff;
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1> Multi-Color Detection using OpenCV</h1>
+    <p>
+      A computer vision project that detects multiple colors in real-time 
+      from a live webcam feed using Python and OpenCV.  
+      Detected colors are highlighted with bounding boxes and labeled for clarity.
+    </p>
+  </header>
+
+  <section>
+    <h2> Key Features</h2>
+    <ul>
+      <li>Uses HSV color space for accurate color detection</li>
+      <li>Detects multiple colors (Red, Green, Blue, Yellow, Purple, etc.)</li>
+      <li>Bounding boxes are drawn in the detected color itself</li>
+      <li>Labels displayed above each detected region</li>
+      <li>Simple and effective real-time detection</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2> Use Cases</h2>
+    <ul>
+      <li>Traffic light detection for self-driving systems</li>
+      <li>Sorting objects by color in industries</li>
+      <li>Robotics vision tasks</li>
+      <li>Educational and learning projects</li>
+    </ul>
+  </section>
+
+  <section class="screenshot">
+    <h2>📸 Example Output</h2>
+    <img src="Color_Detection.PNG" alt="Color Detection Output">
+    <p>This is how the system detects and labels multiple colors in real-time.</p>
+  </section>
+
+  <footer>
+    <p>Developed by Akshay Bhujbal | Powered by Python & OpenCV</p>
+  </footer>
+
+</body>
+</html>
