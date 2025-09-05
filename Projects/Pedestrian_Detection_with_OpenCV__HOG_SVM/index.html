@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedestrian Detection with OpenCV</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #00eaff;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+    h2 {
+      font-size: 1.5rem;
+      color: #ffdd57;
+      margin-bottom: 10px;
+    }
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    li {
+      font-size: 1rem;
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pedestrian Detection with OpenCV</h1>
+
+    <div class="card">
+      <h2>What We Did</h2>
+      <ul>
+        <li>Built a pedestrian detection system using Haar Cascades and HOG + SVM.</li>
+        <li>Implemented in OpenCV for real-time video and image analysis.</li>
+        <li>Tested on multiple environments with varying conditions.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Why HOG + SVM</h2>
+      <ul>
+        <li>HOG captures shape and edge features of pedestrians.</li>
+        <li>SVM provides robust classification based on extracted features.</li>
+        <li>Balanced trade-off between accuracy and speed for detection.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Demo Output</h2>
+      <ul>
+        <li>Detected pedestrians in still images and live video streams.</li>
+        <li>Worked across different camera angles and lighting conditions.</li>
+        <li>Highlighted bounding boxes around detected people.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Limitations</h2>
+      <ul>
+        <li>Performance drops in crowded or occluded scenes.</li>
+        <li>Struggles under poor lighting or extreme viewing angles.</li>
+        <li>Not as fast as modern deep learning approaches.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Future Work</h2>
+      <ul>
+        <li>Upgrade system with YOLO for real-time deep learning detection.</li>
+        <li>Leverage GPU acceleration for higher speed and efficiency.</li>
+        <li>Expand to autonomous driving and smart surveillance use cases.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
