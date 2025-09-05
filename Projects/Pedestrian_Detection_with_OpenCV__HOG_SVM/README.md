@@ -21,16 +21,16 @@
 ## 🖼 Demo Output
 
 ### App Interface
-![App Look 1](Output/App_look_1.png)
+![App Look 1](Output/App_look_1.PNG)
 
 ### Image Detection
-![Image Detection](Output/Image_2.png)
+![Image Detection](Output/Image_2.PNG)
 
 ### Video (Wide Angle)
-![Video Detection 1](Output/Video_3.png)
+![Video Detection 1](Output/Video_3.PNG)
 
 ### Video (Close Angle)
-![Video Detection 2](Output/Video_4.png)
+![Video Detection 2](Output/Video_4.PNG)
 
 ---
 
@@ -69,13 +69,4 @@ streamlit run app.py
 * `Output/` → Screenshots & results
 
 ---
-
-✅ Ready for **2-minute presentation** — just speak in points while showing screenshots!
-
-```
-
----
-
-👉 Do you want me to also make a **shorter presentation-style README.md** (just 5 bullets + screenshots) so it looks more like your explainer slides?
-```
 
