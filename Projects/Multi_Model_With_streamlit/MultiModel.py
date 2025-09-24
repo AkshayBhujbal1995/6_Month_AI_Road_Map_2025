@@ -9,7 +9,7 @@ import google.generativeai as genai
 from PIL import Image
 
 # Step 1: Configure Gemini API Key
-genai.configure(api_key="AIzaSyDCxXIK9T9xR1HusdKvKCZPQ6NciKDiXhQ")  # Replace with your key
+genai.configure(api_key="Enter Your API key")  # Replace with your key
 
 # Step 2: Load Model
 model = genai.GenerativeModel("gemini-2.5-flash-preview-05-20")
